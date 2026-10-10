@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematik AI Yordamchisi</title>
+    <!-- Math.js kutubxonasi matematik hisob-kitoblar uchun -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+        }
+        .chat-container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h2 { color: #333; text-align: center; }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        input {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover { background-color: #45a049; }
+        #result {
+            margin-top: 25px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-left: 5px solid #4CAF50;
+            font-size: 18px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <h2>Matematik AI</h2>
+    <p style="text-align: center; color: #666;">Ifoda yoki amalni kiriting (masalan: <code>2 + 2 * 3</code>, <code>sqrt(16)</code>, <code>sin(pi/2)</code>)</p>
+    
+    <div class="input-group">
+        <input type="text" id="mathInput" placeholder="Masalan: 5 * (10 - 3)">
+        <button onclick="calculate()">Hisoblash</button>
+    </div>
+    
+    <div id="result"></div>
+</div>
+
+<script>
+    function calculate() {
+        const input = document.getElementById('mathInput').value;
+        const resultDiv = document.getElementById('result');
+        
+        if (!input.trim()) {
+            alert("Iltimos, biror matematikaifoda kiriting!");
+            return;
+        }
+
+        try {
+            // Math.js yordamida ifodani hisoblash
+            const answer = math.evaluate(input);
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = <b>Natija:</b> ${answer};
+            resultDiv.style.borderColor = "#4CAF50";
+            resultDiv.style.background = "#e8f5e9";
+        } catch (error) {
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = <b>Xatolik:</b> Noto'g'ri matematika ifodasi kiritildi.;
+            resultDiv.style.borderColor = "#f44336";
+            resultDiv.style.background = "#ffebee";
+        }
+    }
+</script>
+
+</body>
+</html>
